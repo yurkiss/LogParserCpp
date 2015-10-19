@@ -25,13 +25,14 @@ using namespace std::chrono;
 using namespace std;
 
 
-string fileName = "D:\\file.txt";
+const string fileName = "D:\\file.txt";
+//const string fileName = "D:\\qwe.txt";
 
 
 void threads();
 void singleThread();
-
-
+void singleThreadOOP();
+void threadsOOP();
 
 
 /*
@@ -40,17 +41,12 @@ void singleThread();
 int main(int argc, char** argv)
 {
 
-//    LineParsingStrategy lineStrategy;
-//    std::cout << &lineStrategy << std::endl;
-    //Parser p(lineStrategy);
-    Parser p("D:\\file.txt", "operator");
-
-    return 0;
-    
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
 
-    threads();
+    //threads();
     //singleThread();
+    //singleThreadOOP();
+    threadsOOP();
     
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
@@ -138,23 +134,58 @@ void singleThread()
     
 }
 
+void singleThreadOOP()
+{
+
+    //Parser p(fileName, "operator");
+    //p.parse();  
+
+}
+
+void threadsOOP()
+{
+
+    streampos end = getFileLength(fileName);
+    streampos middle = end / 2; 
+    streampos quater1 = middle / 2;
+    streampos quater2 = middle + quater1;
+
+    SymbolParsingStrategy smbParsingStrategy;
+    Parser p1(fileName, "operator", smbParsingStrategy);
+    Parser p2(fileName, "operator", smbParsingStrategy);
+    Parser p3(fileName, "operator", smbParsingStrategy);
+    Parser p4(fileName, "operator", smbParsingStrategy);
+    
+    std::thread th1(&Parser::parse, &p1, 0, quater1);
+    std::thread th2(&Parser::parse, &p2, quater1, middle);
+    std::thread th3(&Parser::parse, &p3, middle, quater2);
+    std::thread th4(&Parser::parse, &p4, quater2, end);
+    
+    th4.join();
+    th3.join();
+    th2.join();
+    th1.join();
+
+}
+
 void threads()
 {
  
     //parseThread t1("D:\\qwe.txt", 0, 0, "operator");
     
     streampos end = getFileLength(fileName);        
-    streampos middle = end / 2;//getFileMiddlePosition(fileName);    
+    streampos middle = end / 2;
     streampos quater1 = middle / 2;
     streampos quater2 = middle + quater1;
 
+    /*
     std::thread th1(fileParser, fileName, "operator", 0, middle);
     std::thread th2(fileParser, fileName, "operator", middle, end);
     th2.join();
     th1.join();
+    */
 
 
-/*
     std::thread th1(fileParser, fileName, "operator", 0, quater1);
     std::thread th2(fileParser, fileName, "operator", quater1, middle);
     std::thread th3(fileParser, fileName, "operator", middle, quater2);
@@ -163,5 +194,7 @@ void threads()
     th3.join();
     th2.join();
     th1.join();
-  */  
+   
 }
+
+
