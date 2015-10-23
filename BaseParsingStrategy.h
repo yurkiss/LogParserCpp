@@ -50,16 +50,26 @@ class FindStrategy
     public:
 	FindStrategy(){}
 	virtual ~FindStrategy(){}
+	
+	/**
+	 * This find should be overrode by derived classes
+         * @param str
+         * @param what
+         * @param from
+         * @return 
+         */
 	virtual std::vector<std::string::size_type> find(const std::string &str, const std::string &what, std::string::size_type from = 0) = 0;
 
-	 /**
+	/**
 	 * Search a substring in a string using Rabin–Karp algorithm
+	 * Overloaded find return single position for cases when you want to find single occurrence of what.
+	 * 
 	 * @param str
 	 * @param what
 	 * @param from
 	 * @return position in string where what argument was found
 	 */
-	std::string::size_type d_find(const std::string &str, const std::string &what, std::string::size_type from = 0) const
+	std::string::size_type find(const std::string &str, const std::string &what, std::string::size_type from = 0) const
 	{
 	    const long int lenWhat = what.length();
 	    const long int lenStr = str.length();
@@ -100,7 +110,7 @@ class FindStrategy
 	 * @param what
 	 * @return vector with occurrences positions
 	 */
-	std::vector<std::string::size_type> findAllOccurrences(const std::string &line, const std::string &what)
+	std::vector<std::string::size_type> hashFindAllOccurrences(const std::string &line, const std::string &what)
 	{
 	    std::vector<std::string::size_type> result;
 
@@ -150,10 +160,61 @@ class HashFindStrategy : public FindStrategy
     public:
 	std::vector<std::string::size_type> find(const std::string &str, const std::string &what, std::string::size_type from = 0) override
 	{
-	    return findAllOccurrences(str, what);
+	    return hashFindAllOccurrences(str, what);
 	}
     
 };
+
+class HashFindStrategyOld : public FindStrategy
+{
+public:
+
+    std::vector<std::string::size_type> find(const std::string &str, const std::string &what, std::string::size_type from = 0) override
+    {
+
+	std::vector<std::string::size_type> result;
+
+	const long int lenWhat = what.length();
+	const long int lenStr = line.length();
+
+	std::string::size_type from = 0;
+
+	if (lenWhat <= lenStr && from <= lenStr && from + lenWhat <= lenStr)
+	{
+
+	    unsigned long int hashWhat = hash(what);
+	    std::string substr = line.substr(from, lenWhat);
+	    unsigned long int h = hash(substr);
+
+	    if (hashWhat == h)
+	    {
+		result.push_back(from);
+		from = from + lenWhat - 1;
+	    }
+
+	    for (auto i = from + 1; i + lenWhat <= lenStr;)
+	    {
+		char prevFirstChar = line[i - 1];
+		char newLastChar = line[lenWhat + i - 1];
+		h = getNextHash(h, prevFirstChar, newLastChar, lenWhat);
+
+		if (hashWhat == h)
+		{
+		    result.push_back(i);
+		    i += lenWhat - 1;
+		}
+		else
+		{
+		    ++i;
+		}
+	    }
+
+	}
+    }
+
+};
+
+
 
 class StandartFindStrategy : public FindStrategy
 {

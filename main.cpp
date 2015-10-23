@@ -14,21 +14,14 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <thread>
 #include <chrono>
 #include <string>
 
-#include "Parser.h"
-#include "BaseParsingStrategy.h"
+
+#include "ParsingManager.h"
 
 using namespace std::chrono;
 
-
-
-const std::string fileName = "D:\\file.txt";
-//const string fileName = "D:\\qwe.txt";
-
-const std::string lookingFor = "operator";
 
 
 enum class UseCases
@@ -77,8 +70,6 @@ int main(int argc, char** argv)
         default:
             break;
     }
-   
-
     
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
@@ -89,7 +80,5 @@ int main(int argc, char** argv)
     return 0;
 }
 
-
-/***********************************************************************************/
-
+/* THE END */
 

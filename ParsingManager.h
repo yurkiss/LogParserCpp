@@ -19,6 +19,13 @@
 #include <thread>
 #include <string>
 
+#include "Parser.h"
+#include "BaseParsingStrategy.h"
+
+const std::string fileName = "D:\\file.txt";
+//const string fileName = "D:\\qwe.txt";
+const std::string lookingFor = "operator";
+
 class ParsingManager
 {
     private:
@@ -42,7 +49,7 @@ class ParsingManager
 	    return 0;
 	}
 
-	int fileParser(const std::string fileName, const std::string lookingFor, std::streampos from, std::streampos to)
+	static int fileParser(const std::string fileName, const std::string lookingFor, std::streampos from, std::streampos to)
 	{
 
 	    std::ifstream * const myfile = new std::ifstream();
@@ -69,7 +76,6 @@ class ParsingManager
 			while (pos != std::string::npos && pos < s.length())
 			{
 			    ++found;
-			    //cout << pos << ":" << s.length() << " ... " << s << endl;
 			    pos = s.find(lookingFor, pos + 1);
 			}
 		    }
@@ -86,9 +92,11 @@ class ParsingManager
 
 	    return 0;
 	}
-
+	
+	
     public:
 
+	/***/
 	void singleThread()
 	{
 
@@ -97,6 +105,7 @@ class ParsingManager
 
 	}
 
+	/***/
 	void threads()
 	{
 
@@ -104,11 +113,11 @@ class ParsingManager
 	    std::streampos middle = end / 2;
 	    std::streampos quater1 = middle / 2;
 	    std::streampos quater2 = middle + quater1;
-
-	    std::thread th1(fileParser, fileName, lookingFor, 0, quater1);
-	    std::thread th2(fileParser, fileName, lookingFor, quater1, middle);
-	    std::thread th3(fileParser, fileName, lookingFor, middle, quater2);
-	    std::thread th4(fileParser, fileName, lookingFor, quater2, end);
+	    	    
+	    std::thread th1(ParsingManager::fileParser, fileName, lookingFor, 0, quater1);
+	    std::thread th2(ParsingManager::fileParser, fileName, lookingFor, quater1, middle);
+	    std::thread th3(ParsingManager::fileParser, fileName, lookingFor, middle, quater2);
+	    std::thread th4(ParsingManager::fileParser, fileName, lookingFor, quater2, end);
 
 	    th4.join();
 	    th3.join();
@@ -117,6 +126,7 @@ class ParsingManager
 
 	}
 
+	/***/
 	void singleThreadOOP()
 	{
 	    std::streampos end = getFileLength(fileName);
@@ -131,6 +141,7 @@ class ParsingManager
 
 	}
 
+	/***/
 	void threadsOOP()
 	{
 
@@ -160,9 +171,6 @@ class ParsingManager
 	}
 
 };
-
-
-
 
 #endif /* PARSINGMANAGER_H */
 
