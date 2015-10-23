@@ -6,7 +6,7 @@
                    projectFiles="true">
       <itemPath>BaseParsingStrategy.h</itemPath>
       <itemPath>Parser.h</itemPath>
-      <itemPath>ParsingActions.h</itemPath>
+      <itemPath>ParsingManager.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -22,6 +22,14 @@
                    displayName="Test Files"
                    projectFiles="false"
                    kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f2"
+                     displayName="New CppUnit Test"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/newtestclass.cpp</itemPath>
+        <itemPath>tests/newtestclass.h</itemPath>
+        <itemPath>tests/newtestrunner.cpp</itemPath>
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -49,9 +57,37 @@
       </item>
       <item path="Parser.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ParsingActions.h" ex="false" tool="3" flavor2="0">
+      <item path="ParsingManager.h" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <incFile>
+            <pElem>BaseParsingStrategy.h</pElem>
+          </incFile>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/newtestclass.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool>
+          <incFile>
+            <pElem>BaseParsingStrategy.h</pElem>
+          </incFile>
+        </ccTool>
+      </item>
+      <item path="tests/newtestclass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/newtestrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -81,9 +117,29 @@
       </item>
       <item path="Parser.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ParsingActions.h" ex="false" tool="3" flavor2="0">
+      <item path="ParsingManager.h" ex="false" tool="3" flavor2="0">
       </item>
+      <folder path="TestFiles/f2">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f2</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/newtestclass.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/newtestclass.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/newtestrunner.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

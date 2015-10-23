@@ -24,19 +24,22 @@
 class Parser
 {    
     public:	
-	Parser(const std::string fileName, const std::string lookingFor);	
-	Parser(const std::string fileName, const std::string lookingFor, ParsingStrategy *const strategy);	
-	Parser(const Parser& orig); //copy constructor
-	virtual ~Parser();
-	//void setParsingStrategy(const ParsingStrategy *const i_strategy) { m_strategy = i_strategy; }
-	void parse(std::streampos from = std::ios::beg, std::streampos to = std::ios::end){ m_strategy->parse(m_fileStream, m_lookingFor, from, to); }	
-	void parse(const ParsingStrategy *const strategy, std::streampos from = std::ios::beg, std::streampos to = std::ios::end){};
+	Parser(const std::string fileName, const std::string lookingFor);			
+	~Parser();	
 	
-    private:
-	ParsingStrategy *m_strategy;
+	template<template<typename> class _PS = LineParsingStrategy, typename _FS = StandartFindStrategy>
+	void parse(std::streampos from = std::ios::beg, std::streampos to = std::ios::end)
+	{ 
+	    _PS<_FS> _strategy;	    
+	    _strategy.parse(m_fileStream, m_lookingFor, from, to);
+	};
+	
+    private:	
 	const std::string m_fileName;
 	const std::string m_lookingFor;
-	std::ifstream *m_fileStream;
+	std::ifstream m_fileStream;
+	
+	Parser(const Parser& orig); //copy constructor
 	
 };
 
