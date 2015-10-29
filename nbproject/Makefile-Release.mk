@@ -45,6 +45,11 @@ TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
 TESTFILES= \
 	${TESTDIR}/TestFiles/f2
 
+# Test Object Files
+TESTOBJECTFILES= \
+	${TESTDIR}/tests/newtestclass.o \
+	${TESTDIR}/tests/newtestrunner.o
+
 # C Compiler Flags
 CFLAGS=
 
@@ -83,7 +88,9 @@ ${OBJECTDIR}/main.o: main.cpp
 .build-subprojects:
 
 # Build Test Targets
-.build-tests-conf: .build-conf ${TESTFILES}
+.build-tests-conf: .build-tests-subprojects .build-conf ${TESTFILES}
+.build-tests-subprojects:
+
 ${TESTDIR}/TestFiles/f2: ${TESTDIR}/tests/newtestclass.o ${TESTDIR}/tests/newtestrunner.o ${OBJECTFILES:%.o=%_nomain.o}
 	${MKDIR} -p ${TESTDIR}/TestFiles
 	${LINK.cc}   -o ${TESTDIR}/TestFiles/f2 $^ ${LDLIBSOPTIONS} `cppunit-config --libs`   

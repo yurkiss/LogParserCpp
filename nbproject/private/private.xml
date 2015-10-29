@@ -7,13 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/tests/newtestrunner.cpp</file>
-            <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/Parser.h</file>
+            <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/ParsingManager.h</file>
             <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/main.cpp</file>
-            <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/Parser.cpp</file>
-            <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/tests/newtestclass.cpp</file>
-            <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/tests/newtestclass.h</file>
             <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/BaseParsingStrategy.h</file>
+            <file>file:/C:/Users/yrid/Documents/NetBeansProjects/LogParser/FindStrategy.h</file>
         </group>
     </open-files>
 </project-private>

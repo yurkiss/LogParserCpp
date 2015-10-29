@@ -5,6 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>BaseParsingStrategy.h</itemPath>
+      <itemPath>Comparing.h</itemPath>
+      <itemPath>FindStrategy.h</itemPath>
       <itemPath>Parser.h</itemPath>
       <itemPath>ParsingManager.h</itemPath>
     </logicalFolder>
@@ -52,6 +54,10 @@
         </ccTool>
       </compileType>
       <item path="BaseParsingStrategy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Comparing.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FindStrategy.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Parser.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -112,6 +118,10 @@
         </asmTool>
       </compileType>
       <item path="BaseParsingStrategy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Comparing.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FindStrategy.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Parser.cpp" ex="false" tool="1" flavor2="0">
       </item>
