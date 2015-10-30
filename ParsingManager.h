@@ -77,8 +77,7 @@ class ParsingManager
                     break;
                 case UseCases::THREADS_OOP_S_H:
                     threadsOOP<SymbolParsingStrategy, HashFindStrategy>();
-                    break;
-                    
+                    break;                    
                 case UseCases::SINGLE_THREAD_OOP_L_S:                    
                     singleThreadOOP<LineParsingStrategy, StandartFindStrategy>();
                     break;
@@ -89,13 +88,15 @@ class ParsingManager
                     singleThreadOOP<LineParsingStrategy, HashFindStrategy>();
                     break;
 
-                case UseCases::THREADS:
+                case UseCases::COMPARE:   
+                    singleThreadOOP<LineParsingStrategyCompare, HashFindStrategyCarp>();
+                    break;
 
+                case UseCases::THREADS:
                     threads();
                     break;
 
                 case UseCases::SINGLE_THREAD:
-
                     singleThread();
                     break;        
 

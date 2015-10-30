@@ -99,7 +99,6 @@ class FindStrategy
 
 		    if (hashWhat == h)
 		    {
-			//std::cout << what << "(" << hashWhat << ") == " << str.substr(i, lenWhat) << "(" << h << ") " << str << std::endl;
 			return i;
 		    }
 
@@ -134,7 +133,6 @@ class FindStrategy
 		if (hashWhat == h)
 		{
 		    result.push_back(from);
-		    from = from + lenWhat - 1;
 		}
 
 		for (auto i = from + 1; i + lenWhat <= lenStr;)
@@ -146,7 +144,7 @@ class FindStrategy
 		    if (hashWhat == h)
 		    {
 			result.push_back(i);
-			++i;// += lenWhat - 1;
+			++i;
 		    }
 		    else
 		    {
@@ -272,9 +270,7 @@ class HashFindStrategyCarp : public FindStrategy
 
                 if (hashWhat == h)
                 {
-                    std::cout << from << " " << what << "(" << hashWhat << ") == " << line.substr(0, lenWhat) << "(" << h << ") " << line << std::endl;
                     result.push_back(from);
-                    from = from + lenWhat - 1;                    
                 }
 
                 for (auto i = from + 1; i + lenWhat <= lenStr;)
@@ -286,9 +282,9 @@ class HashFindStrategyCarp : public FindStrategy
 
                     if (hashWhat == h)
                     {
-                        std::cout << i << "  " << what << "(" << hashWhat << ") == " << line.substr(i, lenWhat) << "(" << h << ") " << line << std::endl;
+                        //std::cout << i << "  " << what << "(" << hashWhat << ") == " << line.substr(i, lenWhat) << "(" << h << ") " << line << std::endl;
                         result.push_back(i);
-                        ++i;//= lenWhat - 1;
+                        ++i;
                     }
                     else
                     {
@@ -324,7 +320,6 @@ class StandartFindStrategy : public FindStrategy
 	    {
 		result.push_back(pos);
 		pos = str.find(what, pos + what.length() - 1);
-                //pos = str.find(what, pos + 1);
 	    }
 	    return result;
 	}

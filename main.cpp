@@ -22,8 +22,8 @@
 
 using namespace std::chrono;
 
-//const std::string fileName = "D:\\file.txt";
-const std::string fileName = "D:\\qwe.txt";
+const std::string fileName = "D:\\file.txt";
+//const std::string fileName = "D:\\qwe.txt";
 const std::string lookingFor = "operator";
 
 
@@ -39,10 +39,9 @@ int main(int argc, char** argv)
 
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
        
-    UseCases useCase = UseCases::COMPARE;
+    UseCases useCase = UseCases::THREADS_OOP_L_C;
     ParsingManager prsManager(lookingFor, fileName, useCase);    
-    prsManager.singleThreadOOP<LineParsingStrategyCompare, HashFindStrategyCarp>();
-    
+        
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
 

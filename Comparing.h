@@ -38,11 +38,11 @@ public:
 
         std::map<std::string, std::vector <std::string::size_type> > foundMatches;
 
-        HashFindStrategyCarp findStrategy;
-        std::string ss = "�operator[]()must be called. Wheng()callsuse(), Vector_container�s operator[]()must be called. To";
-        std::vector<std::string::size_type> w = findStrategy.find(ss, lookingFor, 0);
-        if (!w.empty()) {}
-        return;
+//        HashFindStrategyCarp findStrategy;
+//        std::string ss = "�operator[]()must be called. Wheng()callsuse(), Vector_container�s operator[]()must be called. To";
+//        std::vector<std::string::size_type> w = findStrategy.find(ss, lookingFor, 0);
+//        if (!w.empty()) {}
+//        return;
         
         {
             StandartFindStrategy findStrategy;
