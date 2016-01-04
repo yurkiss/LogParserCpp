@@ -133,6 +133,7 @@ class FindStrategy
 		if (hashWhat == h)
 		{
 		    result.push_back(from);
+		    //from = from + lenWhat - 1;
 		}
 
 		for (auto i = from + 1; i + lenWhat <= lenStr;)
@@ -271,6 +272,7 @@ class HashFindStrategyCarp : public FindStrategy
                 if (hashWhat == h)
                 {
                     result.push_back(from);
+                    //from = from + lenWhat - 1;                    
                 }
 
                 for (auto i = from + 1; i + lenWhat <= lenStr;)
