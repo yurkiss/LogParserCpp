@@ -112,7 +112,7 @@ public:
                         std::cout << *posV << " ";
                     }                    
                     std::cout << " != " << " ";
-                    for (auto posV = v2.cbegin(); posV != v2.cend(); ++posV) {
+                    for (auto posV = v2.cbegin(); posV != v2.cend(); ++posV) {			
                         std::cout << *posV << " ";
                     }                                        
                     std::cout << std::endl;

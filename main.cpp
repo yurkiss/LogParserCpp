@@ -16,7 +16,7 @@
 #include <iomanip>
 #include <chrono>
 #include <string>
-
+#include <typeinfo>
 
 #include "ParsingManager.h"
 
@@ -25,6 +25,26 @@ using namespace std::chrono;
 const std::string fileName = "D:\\file.txt";
 //const std::string fileName = "D:\\qwe.txt";
 const std::string lookingFor = "operator";
+
+class A
+{
+    public:
+        A(){};
+        virtual ~A(){};
+};
+
+class B : public A
+{
+    private:
+        int mVal;
+    
+    public:
+        void say()
+        {
+            //mVal = 100;
+            std::cout << "I said say " << std::endl;
+        }
+};
 
 
 /**
@@ -37,6 +57,23 @@ const std::string lookingFor = "operator";
 int main(int argc, char** argv)
 {
 
+    A* a = new A;
+    B* b;
+    
+    try
+    {
+        b = dynamic_cast<B*>(a);    
+        b->say();
+    }
+    catch(...)
+    {
+        std::cout << "Exception" << std::endl;
+    }   
+        
+    std::cout << "End" << std::endl;
+    
+    return 0;
+    
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
        
     UseCases useCase = UseCases::THREADS_OOP_L_C;
